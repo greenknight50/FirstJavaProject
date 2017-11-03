@@ -1,21 +1,26 @@
 package com.maqpro.www;
 
-public class CreateObjectsMain implements Cloneable {
-	
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+public class CreateObjectsMain {
 
 	private String className = "CreateObjectsMain";
-
-	public static void main(String[] args) throws CloneNotSupportedException {
-		
-			CreateObjectsMain object1 = new CreateObjectsMain();
-			object1.className = "Object1Name";
-			CreateObjectsMain object2 = (CreateObjectsMain)object1.clone();
-			System.out.println("Classname from object2 instance var: " +object2.className);
 	
+	public CreateObjectsMain()
+	{
+		
+	}
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		
+		try {
+			Constructor<CreateObjectsMain> constructor = CreateObjectsMain.class.getDeclaredConstructor();
+			CreateObjectsMain object = constructor.newInstance();
+			System.out.println("Object created for: " + object.className);
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
