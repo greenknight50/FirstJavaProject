@@ -9,6 +9,7 @@ class Animal {
 
 class Tiger extends Animal {
 	public void eat() {
+		super.eat();
 		System.out.println("Tiger only eats flesh/meat");
 	}
 }
