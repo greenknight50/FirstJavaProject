@@ -14,6 +14,8 @@ abstract class Vehicle {
 
 
 public class Ferrari extends Vehicle {
+	
+	private static String carName = "Enzo";
 
 	public static void main(String[] args) {
 		//Vehicle vehicle = new Vehicle();
