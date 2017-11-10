@@ -22,7 +22,7 @@ public class BirdsImpl implements Birds, FlyingCreatures {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Main method starts");
+		System.out.println("Main method starts here");
 		System.out.println(Birds.birdName);
 		BirdsImpl sparrow = new BirdsImpl();
 		sparrow.bodyColor();
