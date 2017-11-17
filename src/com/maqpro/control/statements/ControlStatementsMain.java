@@ -31,6 +31,8 @@ public class ControlStatementsMain {
 		
 		StringBuilder strBuilder = new StringBuilder("Hello World");
 		strBuilder.append(" from java program builder");
+		System.out.println("str1 length: " + str1.length());
+		System.out.println("str1 char at 16: " + str1.charAt(16));
 		
 	}
 
