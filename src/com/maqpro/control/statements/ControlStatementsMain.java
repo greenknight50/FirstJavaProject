@@ -1,6 +1,10 @@
 package com.maqpro.control.statements;
 
 public class ControlStatementsMain {
+	
+	public ControlStatementsMain(String message) {
+		System.out.println("From CSM: " + message);
+	}
 
 	public static void main(String[] args) {
 
