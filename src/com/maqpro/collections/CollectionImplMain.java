@@ -1,31 +1,25 @@
 package com.maqpro.collections;
 
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.TreeSet;
 
 public class CollectionImplMain {
 
 	public static void main(String[] args) {
 		
-		HashSet<String> hashSet = new HashSet<String>();
-		hashSet.add("Chicago");
-		hashSet.add("Atlanta");
-		hashSet.add("Hyderabad");
-		hashSet.add("California");
-		System.out.println("Hashset elements: " + hashSet);
-		hashSet.add("Chicago");
-		hashSet.add(null);
-		System.out.println("Hashset elements after adding chicago: " + hashSet);
-		HashSet<Integer> hashSet1 = new HashSet<Integer>(20);
-		HashSet<Integer> hashSet2  = new HashSet<Integer>(20, 0.8f);
-		for(int i = 0; i< 22; i++) {
-			hashSet2.add(i);
-		}
-		System.out.println("Hashset2 : "  + hashSet2);
-		HashSet<Integer> hashSet3 = new HashSet<Integer>(hashSet2);
-		System.out.println("Hashset3: "  + hashSet3);
-		hashSet1.add(8);
-		hashSet1.add(3);
-		hashSet1.add(51);
-		System.out.println(hashSet1);
+		TreeSet<Integer> ts = new TreeSet<Integer>();
+		ts.add(53);
+		ts.add(1);
+		ts.add(10);
+		ts.add(101);
+		System.out.println("Treeset element: " + ts);
+		TreeSet<Integer> ts1 = new TreeSet<Integer>(Collections.reverseOrder());
+		ts1.add(83);
+		ts1.add(4);
+		ts1.add(10);
+		ts1.add(3);
+		ts1.containsAll(ts);
+		System.out.println("TreeSet in desc: " + ts1);
+		System.out.println("Ts contains: " + ts1.contains(53));
 	}
 }
