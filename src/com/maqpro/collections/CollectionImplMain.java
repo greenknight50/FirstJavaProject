@@ -1,51 +1,37 @@
 package com.maqpro.collections;
 
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.TreeSet;
+import java.util.Collections;
+
+import com.maqpro.model.Employee;
 
 public class CollectionImplMain {
 
 	public static void main(String[] args) {
 
-		TreeSet<Integer> ts = new TreeSet<Integer>();
-		ts.add(53);
-		ts.add(1);
-		ts.add(10);
-		ts.add(101);
-		System.out.println("Treeset element: " + ts);
-		Iterator tsIterator = ts.iterator();
-		try {
-			while (tsIterator.hasNext()) {
-				int element = (int) tsIterator.next();
-				if (element == 53) {
-					System.out.println("removing value: " + element);
-					ts.remove(element);
-					// tsIterator.remove();
-				}
-				System.out.println("element: " + element);
-			}
-		} catch (ConcurrentModificationException e) {
-			System.out.println("Inside catch block");
-			//e.printStackTrace();
+		ArrayList<Employee> employees = new ArrayList<Employee>();
+		employees.add(new Employee(104, "Bolbao", "Maintainance", 4000.00, "New York"));
+		Employee emp1 = new Employee();
+		emp1.setEmpId(101);
+		emp1.setEmpName("John");
+		emp1.setEmpCity("Chicago");
+		emp1.setEmpDept("IT Dept");
+		emp1.setEmpSalary(5000.0);
+		employees.add(emp1);
+		employees.add(new Employee(103, "Rocky", "R and D", 6000.00, "Boston"));
+		employees.add(new Employee(102, "Rambo", "Human Resources", 4000.00, "Atlanta"));
+		System.out.println("Employees before sorting.");
+		for (Employee emp : employees) {
+			System.out.println("empId: " + emp.getEmpId() + ", empName: " + emp.getEmpName() + ", empDept: "
+					+ emp.getEmpDept() + ", empSalary: " + emp.getEmpSalary() + ", empCity: " + emp.getEmpCity());
 		}
-		System.out.println("Treeset element after removing: " + ts);
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		list.add(15);
-		list.add(10);
-		list.add(30);
-		list.add(20);
-		System.out.println("current list: " + list);
-		ListIterator listIterator = list.listIterator();
-		while(listIterator.hasNext()) {
-			int value = (int) listIterator.next();
-			if (value == 10) {
-				listIterator.set(55);
-			}
-			System.out.println("value: " + value);
+		System.out.println("\n");
+		Collections.sort(employees);
+		System.out.println("Employees after sorting.");
+		for (Employee emp : employees) {
+			System.out.println("empId: " + emp.getEmpId() + ", empName: " + emp.getEmpName() + ", empDept: "
+					+ emp.getEmpDept() + ", empSalary: " + emp.getEmpSalary() + ", empCity: " + emp.getEmpCity());
 		}
-		System.out.println("list after adding: " + list);
+		System.out.println("End of main method");
 	}
 }
