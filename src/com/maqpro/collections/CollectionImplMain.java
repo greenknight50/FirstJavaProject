@@ -2,6 +2,7 @@ package com.maqpro.collections;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import com.maqpro.model.Employee;
 
@@ -27,11 +28,61 @@ public class CollectionImplMain {
 		}
 		System.out.println("\n");
 		Collections.sort(employees);
-		System.out.println("Employees after sorting.");
+		System.out.println("Employees after sorting by id.");
+		for (Employee emp : employees) {
+			System.out.println("empId: " + emp.getEmpId() + ", empName: " + emp.getEmpName() + ", empDept: "
+					+ emp.getEmpDept() + ", empSalary: " + emp.getEmpSalary() + ", empCity: " + emp.getEmpCity());
+		}
+		Collections.sort(employees, new SortByName());
+		System.out.println("\n");
+		System.out.println("Employees after sorting by name:");
+		for (Employee emp : employees) {
+			System.out.println("empId: " + emp.getEmpId() + ", empName: " + emp.getEmpName() + ", empDept: "
+					+ emp.getEmpDept() + ", empSalary: " + emp.getEmpSalary() + ", empCity: " + emp.getEmpCity());
+		}
+		Collections.sort(employees, new SortBySalary());
+		System.out.println("\n");
+		System.out.println("Employees after sorting by salary:");
+		for (Employee emp : employees) {
+			System.out.println("empId: " + emp.getEmpId() + ", empName: " + emp.getEmpName() + ", empDept: "
+					+ emp.getEmpDept() + ", empSalary: " + emp.getEmpSalary() + ", empCity: " + emp.getEmpCity());
+		}
+		Collections.sort(employees, new SortingByCity());
+		System.out.println("\n");
+		System.out.println("Employees after sorting by city:");
+		for (Employee emp : employees) {
+			System.out.println("empId: " + emp.getEmpId() + ", empName: " + emp.getEmpName() + ", empDept: "
+					+ emp.getEmpDept() + ", empSalary: " + emp.getEmpSalary() + ", empCity: " + emp.getEmpCity());
+		}
+		Collections.sort(employees, new Comparator<Employee>() {
+			@Override
+			public int compare(Employee o1, Employee o2) {
+				return o1.getEmpDept().compareTo(o2.getEmpDept());
+			}
+		});
+		System.out.println("\n");
+		System.out.println("Employees after sorting by Department:");
 		for (Employee emp : employees) {
 			System.out.println("empId: " + emp.getEmpId() + ", empName: " + emp.getEmpName() + ", empDept: "
 					+ emp.getEmpDept() + ", empSalary: " + emp.getEmpSalary() + ", empCity: " + emp.getEmpCity());
 		}
 		System.out.println("End of main method");
 	}
+}
+
+class SortByName implements Comparator<Employee> {
+
+	@Override
+	public int compare(Employee o1, Employee o2) {
+		return o1.getEmpName().compareTo(o2.getEmpName());
+	}
+}
+
+class SortBySalary implements Comparator<Employee> {
+
+	@Override
+	public int compare(Employee o1, Employee o2) {
+		return (int) (o1.getEmpSalary() - o2.getEmpSalary());
+	}
+	
 }
