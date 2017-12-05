@@ -1,23 +1,31 @@
 package com.maqpro.collections;
 
-import java.util.HashMap;
+class CustomThread extends Thread {
+
+	@Override
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println("i value from thread " + this.getName() + " is: "  + i);
+		}
+	}
+}
 
 public class CollectionImplMain {
 
 	public static void main(String[] args) {
-		
-		HashMap<String, String> map = new HashMap<String, String>();
-		System.out.println("Map size: " + map.size());
-		map.put("banana", "Yellow");
-		map.put("grapes", "Green");
-		map.put("orange", "orange");
-		System.out.println("map size: " + map.size());
-		System.out.println("map: " + map);
-		System.out.println(map.get("grapes"));
-		String str1 = "Aa";
-		String str2 = "BB";
-		System.out.println("hash of str1: " + str1.hashCode() + ", hash of str2: " + str2.hashCode());
-		
+		System.out.println("Inside main method");
+		CustomThread t1 = new CustomThread();
+		CustomThread t2 = new CustomThread();
+		System.out.println("Starting thread now");
+		t1.setName("FirstThread");
+		t2.setName("SecondThread");
+		t1.start();
+		t2.start();
+		System.out.println("Create thread of runnable interface");
+		ThreadWithRunnable obj = new ThreadWithRunnable();
+		Thread t3 = new Thread(obj);
+		t3.start();
+		System.out.println("End of main method");
 	}
-	
+
 }
