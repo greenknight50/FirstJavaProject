@@ -1,38 +1,51 @@
 package com.maqpro.collections;
 
-class CustomThread extends Thread {
-
-	static Long accountBalance = 1000l;
-
-	@Override
-	public void run() {
-		
-		//95 lines
-		synchronized (accountBalance) {
-			accountBalance = accountBalance - 100;
-			System.out.println("Thread name: " + this.getName() + ", i value: " + accountBalance);
-		}
-		//2 lines
-	}
-}
-
 public class CollectionImplMain {
-
-	public static void main(String[] args) throws InterruptedException {
-		CustomThread t1 = new CustomThread();
-		CustomThread t2 = new CustomThread();
-		t1.setName("First");
-		t2.setName("Second");
-		t1.start();
-		t2.start();
-	}
 	
-	public void printSome() {
-		System.err.println("print now.");
-		
-		
-		
-		//100 lines
-	}
+	public static void main(String[] args) throws InterruptedException {
+		String firstResource = "Important text";
+		String secondResource = "Very important text";
 
+		Thread thread1 = new Thread() {
+			public void run() {
+				synchronized (firstResource) {
+					System.out.println("Thread name: " + this.getName() + ", Locked firstResource");
+					try {
+						this.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+
+					synchronized (secondResource) {
+						System.out.println("Thread name: " + this.getName() + ", Locked secondResource");
+					}
+				}
+			}
+		};
+
+		Thread thread2 = new Thread() {
+			public void run() {
+				synchronized (secondResource) {
+					System.out.println("Thread name: " + this.getName() + ", Locked secondResource");
+					try {
+						this.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+
+					synchronized (firstResource) {
+						System.out.println("Thread name: " + this.getName() + ", Locked firstResource");
+					}
+				}
+			}
+		};
+
+		thread1.setName("FirstThread");
+		thread2.setName("SecondThread");
+		thread1.start();
+		thread2.start();
+		thread1.join();
+		thread2.join();
+		System.out.println("About to exit main method");
+	}
 }
